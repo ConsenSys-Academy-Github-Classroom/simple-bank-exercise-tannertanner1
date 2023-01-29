@@ -16,7 +16,7 @@ contract("SimpleBank", function (accounts) {
   const [contractOwner, alice] = accounts;
   const deposit = web3.utils.toBN(2);
 
-  beforeEach(async () => {
+  beforeEach(async () => { // tests each instance
     instance = await SimpleBank.new();
   });
 
