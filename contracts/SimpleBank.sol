@@ -13,9 +13,15 @@ contract SimpleBank {
     event LogWithdrawal(address accountAddress, uint withdrawAmount, uint newBalance); // 'accountAddress', 'withdrawAmount', 'newBalance'
 
   // fallback function
-    function () external payable {
+    function() external payable {
         revert();
     }
+    // fallback() external payable {
+    //     revert();
+    // }
+    // receive() external payable {
+    //     revert();
+    // }
 
     function getBalance() public returns(uint) { /// @notice get balance
       return balances[msg.sender]; /// @return the balance of the user
