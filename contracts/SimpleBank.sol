@@ -12,6 +12,7 @@ contract SimpleBank {
     event LogDepositMade(address accountAddress, uint depositAmount); // 'accountAddress', 'depositAmount'
     event LogWithdrawal(address accountAddress, uint withdrawAmount, uint newBalance); // 'accountAddress', 'withdrawAmount', 'newBalance'
 
+  // fallback function
     function () external payable {
         revert();
     }
@@ -24,7 +25,7 @@ contract SimpleBank {
       emit LogEnrolled(msg.sender); // emit appropriate event
       return enrolled[msg.sender]; /// @return users enrolled status
     }
-    function deposit() public payable returns(uint) { // 'public payable'
+    function deposit() public payable returns(uint) {
       require(enrolled[msg.sender] == true, "User is not enrolled."); /// @notice deposit ether into bank
       balances[msg.sender] += msg.value;
       emit LogDepositMade(msg.sender, msg.value);
