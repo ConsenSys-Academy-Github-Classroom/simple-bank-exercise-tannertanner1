@@ -1,6 +1,5 @@
-
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.5.16 <0.9.0;
+pragma solidity 0.5.16; // >=0.5.16 <0.9.0;
 
 contract SimpleBank {
   // state variables, visibility keywords
@@ -16,14 +15,8 @@ contract SimpleBank {
     function() external payable {
         revert();
     }
-    // fallback() external payable {
-    //     revert();
-    // }
-    // receive() external payable {
-    //     revert();
-    // }
 
-    function getBalance() public returns(uint) { /// @notice get balance
+    function getBalance() public payable returns(uint) { /// @notice get balance
       return balances[msg.sender]; /// @return the balance of the user
     }
     function enroll() public returns(bool) {
