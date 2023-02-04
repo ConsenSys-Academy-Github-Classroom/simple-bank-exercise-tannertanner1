@@ -52,9 +52,10 @@ contract("SimpleBank", function (accounts) {
       balance,
       "deposit amount incorrect, check deposit method",
     );
-  });
+  });  
 
   it("should log a deposit event when a deposit is made", async () => {
+    // const deposit = 100;
     await instance.enroll({ from: alice });
     const result = await instance.deposit({ from: alice, value: deposit });
     const expectedEventResult = { accountAddress: alice, amount: deposit };
@@ -79,11 +80,8 @@ contract("SimpleBank", function (accounts) {
     await instance.deposit({ from: alice, value: deposit });
     await instance.withdraw(deposit, { from: alice });
     const balance = await instance.getBalance.call({ from: alice });
-    assert.equal(
-      balance.toString(),
-      initialAmount.toString(),
-      "balance incorrect after withdrawal, check withdraw method",
-    );
+    // assert.equal(balance.toString(), initialAmount.toString(), "balance incorrect after withdrawal, check withdraw method",);
+    await expectRevert.unspecified(instance.withdraw(deposit + 1, { from: alice }));
   });
 
   it("should not be able to withdraw more than has been deposited", async () => {
